@@ -1,4 +1,4 @@
-package net.ramixin.dynamo.fabric.contexts;
+package net.ramixin.dynamo.fabric.impl.contexts;
 
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandBuildContext;

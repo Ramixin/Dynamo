@@ -1,6 +1,7 @@
 package net.ramixin.dynamo;
 
-import net.ramixin.stator.entrypoints.Entrypoint;
+import net.ramixin.stator.entrypoints.Phase;
+import net.ramixin.stator.entrypoints.Side;
 import net.ramixin.stator.events.StatorEventRegistry;
 import net.ramixin.stator.metadata.EntrypointsMetaFile;
 import org.slf4j.Logger;
@@ -38,12 +39,12 @@ public interface DynamoCommon {
         }
     }
 
-    static EntryProvider loadInitializersFromFile(List<Path> initializers, Entrypoint.Side side) {
+    static EntryProvider loadInitializersFromFile(List<Path> initializers, Side side, Phase phase) {
         List<EntrypointsMetaFile.EntrypointData> entryData = new ArrayList<>();
         for(Path path : initializers) {
             try {
                 EntrypointsMetaFile file = EntrypointsMetaFile.read(path, LOGGER);
-                entryData.addAll(file.getSideList(side));
+                entryData.addAll(file.getData(side, phase));
             } catch (Exception e) {
                 throw new RuntimeException(String.format("Failed to process initializer file: %s", path), e);
             }
