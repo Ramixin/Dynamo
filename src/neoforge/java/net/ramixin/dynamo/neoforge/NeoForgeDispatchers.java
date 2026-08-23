@@ -10,6 +10,7 @@ import net.ramixin.dynamo.neoforge.impl.contexts.NeoForgePlayerJoinedServerConte
 import net.ramixin.stator.Platform;
 import net.ramixin.stator.events.Event;
 import net.ramixin.stator.events.annotations.BlockBrokenEvent;
+import net.ramixin.stator.events.annotations.CommandRegistrationEvent;
 import net.ramixin.stator.events.annotations.PlayerJoinedServerEvent;
 import net.ramixin.stator.events.contexts.BlockBrokenContext;
 import net.ramixin.stator.events.contexts.CommandRegistrationContext;
@@ -32,7 +33,7 @@ public class NeoForgeDispatchers {
         );
     }
 
-    @Dispatcher(event = PlayerJoinedServerEvent.class, loader = Platform.NEOFORGE)
+    @Dispatcher(event = CommandRegistrationEvent.class, loader = Platform.NEOFORGE)
     private static void commandRegistrationDispatcher(Event<CommandRegistrationContext, Void> event) {
         NeoForge.EVENT_BUS.addListener((RegisterCommandsEvent neoEvent) ->
                 event.call(new NeoForgeCommandRegistrationContext(neoEvent))

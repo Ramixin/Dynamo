@@ -70,6 +70,7 @@ manifests {
         iconPath = "assets/$projectModId/icon.png"
 
         dependency("minecraft", ModManifestSpec.DependencyType.REQUIRED, prop("minecraft_support"))
+        dependency("stator", ModManifestSpec.DependencyType.REQUIRED, prop("stator_support"))
 
         mixin("$projectModId.mixins.json")
     }
